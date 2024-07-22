@@ -101,6 +101,6 @@ class HomeModel extends Query
         }
 
         // Devuelve la respuesta
-        echo json_encode($response);
+        return $response;
     }
 }
