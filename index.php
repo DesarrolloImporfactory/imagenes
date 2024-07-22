@@ -5,6 +5,8 @@ require_once 'Config/Config.php';
 $rute = !empty($_GET['url']) ? $_GET['url'] : 'Home/index';
 if ($rute == "subir") {
     $rute = "Home/subir";
+} else if ($rute == "landing") {
+    $rute = "Home/landing";
 }
 
 $array = explode('/', $rute);
