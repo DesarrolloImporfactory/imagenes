@@ -18,7 +18,9 @@ class Home extends Controller
     public function subir()
     {
         $imagen = $_FILES['file'];
-        $this->model->subir($imagen);
+        $response = $this->model->subir($imagen);
+        echo $response["data"];
     }
+
     ///Funciones
 }
