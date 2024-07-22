@@ -61,4 +61,46 @@ class HomeModel extends Query
         }
         return $response;
     }
+
+    public function landing($landing)
+    {
+        $target_dir = "public/landing/repositorio/";
+
+        $target_file = $target_dir . basename($landing["name"]);
+        $uploadOk = 1;
+        $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // Verificar si el archivo es HTML
+        if ($fileType != "html") {
+            $response['status'] = 500;
+            $response['title'] = 'Error';
+            $response['message'] = 'Solo se permiten archivos HTML';
+            $uploadOk = 0;
+        }
+
+        // Verificar el tamaño del archivo
+        if ($landing["size"] > 500000) {
+            $response['status'] = 500;
+            $response['title'] = 'Error';
+            $response['message'] = 'El archivo es muy grande';
+            $uploadOk = 0;
+        }
+
+        // Si todo está bien, intenta subir el archivo
+        if ($uploadOk == 1) {
+            if (move_uploaded_file($landing["tmp_name"], $target_file)) {
+                $response['status'] = 200;
+                $response['title'] = 'Petición exitosa';
+                $response['message'] = 'Archivo subido correctamente';
+                $response['data'] = $target_file;
+            } else {
+                $response['status'] = 500;
+                $response['title'] = 'Error';
+                $response['message'] = 'Error al subir el archivo';
+            }
+        }
+
+        // Devuelve la respuesta
+        echo json_encode($response);
+    }
 }

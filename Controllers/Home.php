@@ -22,5 +22,11 @@ class Home extends Controller
         echo $response["data"];
     }
 
+    public function landing()
+    {
+        $landing = $_FILES['file'];
+        $response = $this->model->landing($landing);
+        echo $response["data"];
+    }
     ///Funciones
 }
