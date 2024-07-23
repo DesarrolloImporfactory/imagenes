@@ -26,7 +26,7 @@ class Home extends Controller
     {
         $landing = $_FILES['file'];
         $response = $this->model->landing($landing);
-        echo $response["data"];
+        echo json_encode($response);
     }
     ///Funciones
 }
