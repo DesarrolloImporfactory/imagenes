@@ -7,6 +7,8 @@ if ($rute == "subir") {
     $rute = "Home/subir";
 } else if ($rute == "landing") {
     $rute = "Home/landing";
+} else if ($rute == "editarLanding") {
+    $rute = "Home/editarLanding";
 }
 
 $array = explode('/', $rute);
