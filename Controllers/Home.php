@@ -37,5 +37,10 @@ class Home extends Controller
         $response = $this->model->editarLanding($id_producto, $html);
         echo json_encode($response);
     }
-    ///Funciones
+
+    public function obtenerLanding($id_producto)
+    {
+        $response = $this->model->obtenerLanding($id_producto);
+        echo json_encode($response);
+    }
 }
