@@ -62,7 +62,7 @@ class HomeModel extends Query
         return $response;
     }
 
-    public function landing($landing)
+    public function landing($landing, $id_producto)
     {
         $target_dir = "public/landing/repositorio/";
 
@@ -93,6 +93,10 @@ class HomeModel extends Query
                 $response['title'] = 'Petición exitosa';
                 $response['message'] = 'Archivo subido correctamente';
                 $response['data'] = $target_file;
+
+                $sql = "INSERT INTO landing (id_producto, contenido) VALUES (?, ?)";
+                $data = [$id_producto, $target_file];
+                $insertar_landing = $this->insert($sql, $data);
             } else {
                 $response['status'] = 500;
                 $response['title'] = 'Error';
@@ -101,6 +105,25 @@ class HomeModel extends Query
         }
 
         // Devuelve la respuesta
+        return $response;
+    }
+
+    public function editarLanding($id_producto, $html)
+    {
+        $sql = "SELECT * FROM landing WHERE id_producto = ?";
+        $data = [$id_producto];
+        $landing = $this->select($sql, $data);
+
+        $contenido = $landing[0]['contenido'];
+        //hacer un put de contenido
+        $file = fopen($contenido, "w");
+        fwrite($file, $html);
+        fclose($file);
+
+        $response['status'] = 200;
+        $response['title'] = 'Petición exitosa';
+        $response['message'] = 'Landing editado correctamente';
+
         return $response;
     }
 }

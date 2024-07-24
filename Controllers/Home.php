@@ -25,7 +25,16 @@ class Home extends Controller
     public function landing()
     {
         $landing = $_FILES['file'];
-        $response = $this->model->landing($landing);
+        $id_producto = $_POST['id_producto'];
+        $response = $this->model->landing($landing, $id_producto);
+        echo json_encode($response);
+    }
+
+    public function editarLanding()
+    {
+        $id_producto = $_POST['id_producto'];
+        $html = $_POST['html'];
+        $response = $this->model->editarLanding($id_producto, $html);
         echo json_encode($response);
     }
     ///Funciones
