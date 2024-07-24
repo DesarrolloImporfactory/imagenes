@@ -110,12 +110,10 @@ class HomeModel extends Query
 
     public function editarLanding($html, $id_producto)
     {
-        echo $html;
-        echo $id_producto;
         $sql = "SELECT * FROM landing WHERE id_producto = 7207";
         $data = [$id_producto];
         $landing = $this->select($sql, $data);
-        print_r($landing);
+
         $contenido = $landing[0]['contenido'];
         //hacer un put de contenido
         $file = fopen($contenido, "w");
