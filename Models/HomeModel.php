@@ -110,6 +110,8 @@ class HomeModel extends Query
 
     public function editarLanding($html, $id_producto)
     {
+        echo $html;
+        echo $id_producto;
         $sql = "SELECT * FROM landing WHERE id_producto = ?";
         $data = [$id_producto];
         $landing = $this->select($sql, $data);
