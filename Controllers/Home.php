@@ -42,6 +42,6 @@ class Home extends Controller
     {
         $id_producto = $_POST['id_producto'];
         $response = $this->model->obtenerLanding($id_producto);
-        echo json_encode($response);
+        echo json_encode(["status" => 200, "data" => $response]);
     }
 }
