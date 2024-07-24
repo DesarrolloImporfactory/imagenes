@@ -38,8 +38,9 @@ class Home extends Controller
         echo json_encode($response);
     }
 
-    public function obtenerLanding($id_producto)
+    public function obtenerLanding()
     {
+        $id_producto = $_POST['id_producto'];
         $response = $this->model->obtenerLanding($id_producto);
         echo json_encode($response);
     }
