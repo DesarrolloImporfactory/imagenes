@@ -134,8 +134,8 @@ class HomeModel extends Query
         $landing = $landing[0]['contenido'];
 
         $contenido = file_get_contents($landing);
+        //transformar a html    
 
-        // No transformar a HTML escapado, simplemente devolver el contenido
         return $contenido;
     }
 }
