@@ -97,6 +97,13 @@ class HomeModel extends Query
                 $sql = "INSERT INTO landing (id_producto, contenido) VALUES (?, ?)";
                 $data = [$id_producto, $target_file];
                 $insertar_landing = $this->insert($sql, $data);
+                
+                $sql = "UPDATE `productos_tienda` SET `landing`=? WHERE id_producto_tienda=?";
+        // echo $sql;
+        $data = [$target_file, $id_producto];
+        //  print_r($data);
+        $editar_producto = $this->update($sql, $data);
+        
             } else {
                 $response['status'] = 500;
                 $response['title'] = 'Error';
