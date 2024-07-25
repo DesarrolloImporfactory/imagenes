@@ -78,7 +78,7 @@ class HomeModel extends Query
             $uploadOk = 0;
         }
 
-        // Verificar el tamaño del archivo
+        // Verificar el tama帽o del archivo
         if ($landing["size"] > 500000) {
             $response['status'] = 500;
             $response['title'] = 'Error';
@@ -86,11 +86,11 @@ class HomeModel extends Query
             $uploadOk = 0;
         }
 
-        // Si todo está bien, intenta subir el archivo
+        // Si todo est谩 bien, intenta subir el archivo
         if ($uploadOk == 1) {
             if (move_uploaded_file($landing["tmp_name"], $target_file)) {
                 $response['status'] = 200;
-                $response['title'] = 'Petición exitosa';
+                $response['title'] = 'Petici贸n exitosa';
                 $response['message'] = 'Archivo subido correctamente';
                 $response['data'] = $target_file;
 
@@ -98,11 +98,11 @@ class HomeModel extends Query
                 $data = [$id_producto, $target_file];
                 $insertar_landing = $this->insert($sql, $data);
                 
-                $sql = "UPDATE `productos_tienda` SET `landing`=? WHERE id_producto_tienda=?";
-        // echo $sql;
-        $data = [$target_file, $id_producto];
-        //  print_r($data);
-        $editar_producto = $this->update($sql, $data);
+                $sql = "UPDATE `productos` SET `landing`=? WHERE id_producto=?";
+         //echo $sql;
+        $data_update = [$target_file, $id_producto];
+         //print_r($data_update);
+        $editar_producto = $this->update($sql, $data_update);
         
             } else {
                 $response['status'] = 500;
@@ -128,7 +128,7 @@ class HomeModel extends Query
         fclose($file);
 
         $response['status'] = 200;
-        $response['title'] = 'Petición exitosa';
+        $response['title'] = 'Petici贸n exitosa';
         $response['message'] = 'Landing editado correctamente';
 
         return $response;
