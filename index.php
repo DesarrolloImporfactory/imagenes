@@ -17,6 +17,7 @@ if ($rute == "subir") {
     $rute = "Home/obtenerLanding";
 }
 
+
 $array = explode('/', $rute);
 $controller = $array[0];
 // hacer mayuscula la primera letra
