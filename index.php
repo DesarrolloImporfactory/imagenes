@@ -18,6 +18,7 @@ if ($rute == "subir") {
 }
 
 
+
 $array = explode('/', $rute);
 $controller = $array[0];
 // hacer mayuscula la primera letra
@@ -38,6 +39,7 @@ if (!empty($array[2])) {
         $parameter = trim($parameter, ',');
     }
 }
+
 require_once 'Config/App/autoload.php';
 $dirController = 'Controllers/' . $controller . '.php';
 if (file_exists($dirController)) {
