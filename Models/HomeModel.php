@@ -187,7 +187,7 @@ class HomeModel extends Query
     
     public function editarLandingTienda($id_producto, $html)
     {
-        $sql = "SELECT * FROM productos_tienda WHERE id_producto_tienda = $id";
+        $sql = "SELECT * FROM productos_tienda WHERE id_producto_tienda = $id_producto";
 
         $landing = $this->select($sql);
 
