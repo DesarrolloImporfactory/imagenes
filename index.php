@@ -15,12 +15,16 @@ if ($rute == "subir") {
     $rute = "Home/landingTienda";
 } else if ($rute == "editarLanding") {
     $rute = "Home/editarLanding";
+    
 } else if ($rute == "obtenerLanding") {
     $rute = "Home/obtenerLanding";
 }else if ($rute == "obtenerLandingTienda") {
     $rute = "Home/obtenerLandingTienda";
 }
-
+ else if ($rute == "editarLandingTienda") {
+    $rute = "Home/editarLandingTienda";
+    
+}
 
 
 $array = explode('/', $rute);
