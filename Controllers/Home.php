@@ -15,7 +15,7 @@ class Home extends Controller
         $this->views->render($this, "index");
     }
 
-    
+
     public function subir()
     {
         $imagen = $_FILES['file'];
@@ -23,7 +23,7 @@ class Home extends Controller
         echo $response["data"];
     }
 
-    
+
     public function landingTienda()
     {
         $landing = $_FILES['file'];
@@ -31,8 +31,8 @@ class Home extends Controller
         $response = $this->model->landingTienda($landing, $id_producto);
         echo json_encode($response);
     }
-    
-     public function landing()
+
+    public function landing()
     {
         $landing = $_FILES['file'];
         $id_producto = $_POST['id_producto'];
@@ -54,11 +54,11 @@ class Home extends Controller
         $response = $this->model->obtenerLanding($id_producto);
         echo json_encode(["status" => 200, "data" => $response]);
     }
-    
-      public function obtenerLandingTienda()
+
+    public function obtenerLandingTienda()
     {
         $id_producto_tienda = $_POST['id_producto_tienda'];
-        $response = $this->model->obtenerLandingTienda($id_producto_tinda);
+        $response = $this->model->obtenerLandingTienda($id_producto_tienda);
         echo json_encode(["status" => 200, "data" => $response]);
     }
 }
