@@ -144,4 +144,15 @@ class HomeModel extends Query
         $contenido = htmlspecialchars($contenido);
         return $contenido;
     }
+    
+     public function obtenerLandingTienda($id)
+    {
+        $sql = "SELECT * FROM productos_tienda WHERE id_producto_tienda = $id";
+        $landing = $this->select($sql);
+        $landing = $landing[0]['landing_tienda'];
+
+        $contenido = file_get_contents($landing);
+        $contenido = htmlspecialchars($contenido);
+        return $contenido;
+    }
 }
