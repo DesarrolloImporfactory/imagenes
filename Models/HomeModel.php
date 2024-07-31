@@ -148,7 +148,7 @@ class HomeModel extends Query
                 $response['data'] = $target_file;
 
                               
-                $sql = "UPDATE `productos` SET `landing`=? WHERE id_producto=?";
+                $sql = "UPDATE `productos_tienda` SET `landing_tienda`=? WHERE id_producto_tienda=?";
          //echo $sql;
         $data_update = [$target_file, $id_producto];
          //print_r($data_update);
