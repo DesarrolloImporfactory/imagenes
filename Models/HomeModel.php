@@ -114,6 +114,56 @@ class HomeModel extends Query
         // Devuelve la respuesta
         return $response;
     }
+    
+    public function landingTienda($landing, $id_producto)
+    {
+        $target_dir = "public/landing/repositorio/";
+
+        $target_file = $target_dir . basename($landing["name"]);
+        $uploadOk = 1;
+        $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // Verificar si el archivo es HTML
+        if ($fileType != "html") {
+            $response['status'] = 500;
+            $response['title'] = 'Error';
+            $response['message'] = 'Solo se permiten archivos HTML';
+            $uploadOk = 0;
+        }
+
+        // Verificar el tama帽o del archivo
+        if ($landing["size"] > 500000) {
+            $response['status'] = 500;
+            $response['title'] = 'Error';
+            $response['message'] = 'El archivo es muy grande';
+            $uploadOk = 0;
+        }
+
+        // Si todo est谩 bien, intenta subir el archivo
+        if ($uploadOk == 1) {
+            if (move_uploaded_file($landing["tmp_name"], $target_file)) {
+                $response['status'] = 200;
+                $response['title'] = 'Petici贸n exitosa';
+                $response['message'] = 'Archivo subido correctamente';
+                $response['data'] = $target_file;
+
+                              
+                $sql = "UPDATE `productos` SET `landing`=? WHERE id_producto=?";
+         //echo $sql;
+        $data_update = [$target_file, $id_producto];
+         //print_r($data_update);
+        $editar_producto = $this->update($sql, $data_update);
+        
+            } else {
+                $response['status'] = 500;
+                $response['title'] = 'Error';
+                $response['message'] = 'Error al subir el archivo';
+            }
+        }
+
+        // Devuelve la respuesta
+        return $response;
+    }
 
     public function editarLanding($id_producto, $html)
     {
