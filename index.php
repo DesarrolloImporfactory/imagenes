@@ -17,6 +17,8 @@ if ($rute == "subir") {
     $rute = "Home/editarLanding";
 } else if ($rute == "obtenerLanding") {
     $rute = "Home/obtenerLanding";
+}else if ($rute == "obtenerLandingTienda") {
+    $rute = "Home/obtenerLandingTienda";
 }
 
 
