@@ -15,6 +15,7 @@ class Home extends Controller
         $this->views->render($this, "index");
     }
 
+    
     public function subir()
     {
         $imagen = $_FILES['file'];
@@ -22,6 +23,7 @@ class Home extends Controller
         echo $response["data"];
     }
 
+    
     public function landingTienda()
     {
         $landing = $_FILES['file'];
