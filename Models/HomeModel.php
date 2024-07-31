@@ -184,6 +184,26 @@ class HomeModel extends Query
         return $response;
     }
 
+    
+    public function editarLandingTienda($id_producto, $html)
+    {
+        $sql = "SELECT * FROM productos_tienda WHERE id_producto_tienda = $id";
+
+        $landing = $this->select($sql);
+
+        $contenido = $landing[0]['landing_tienda'];
+        //hacer un put de contenido
+        $file = fopen($contenido, "w");
+        fwrite($file, $html);
+        fclose($file);
+
+        $response['status'] = 200;
+        $response['title'] = 'Petici贸n exitosa';
+        $response['message'] = 'Landing actuialzaido correctamente';
+
+        return $response;
+    }
+    
     public function obtenerLanding($id)
     {
         $sql = "SELECT * FROM landing WHERE id_producto = $id";
