@@ -11,7 +11,7 @@ if ($rute == "subir") {
     $rute = "Home/subir";
 } else if ($rute == "landing") {
     $rute = "Home/landing";
-} else if ($rute == "landing") {
+} else if ($rute == "landingTienda") {
     $rute = "Home/landingTienda";
 } else if ($rute == "editarLanding") {
     $rute = "Home/editarLanding";
