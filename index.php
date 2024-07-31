@@ -1,4 +1,8 @@
 <?php
+header("Access-Control-Allow-Origin: * ");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 require_once 'Config/Config.php';
@@ -12,6 +16,8 @@ if ($rute == "subir") {
 } else if ($rute == "obtenerLanding") {
     $rute = "Home/obtenerLanding";
 }
+
+
 
 $array = explode('/', $rute);
 $controller = $array[0];
@@ -33,6 +39,7 @@ if (!empty($array[2])) {
         $parameter = trim($parameter, ',');
     }
 }
+
 require_once 'Config/App/autoload.php';
 $dirController = 'Controllers/' . $controller . '.php';
 if (file_exists($dirController)) {
