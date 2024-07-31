@@ -22,7 +22,15 @@ class Home extends Controller
         echo $response["data"];
     }
 
-    public function landing()
+    public function landingTienda()
+    {
+        $landing = $_FILES['file'];
+        $id_producto = $_POST['id_producto'];
+        $response = $this->model->landingTienda($landing, $id_producto);
+        echo json_encode($response);
+    }
+    
+     public function landing()
     {
         $landing = $_FILES['file'];
         $id_producto = $_POST['id_producto'];
