@@ -29,7 +29,7 @@ class HomeModel extends Query
             $response['message'] = 'El archivo es muy grande';
             $uploadOk = 0;
         }
-        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
             $response['status'] = 500;
             $response['title'] = 'Error';
             $response['message'] = 'Solo se permiten archivos JPG, JPEG, PNG';
@@ -97,13 +97,12 @@ class HomeModel extends Query
                 $sql = "INSERT INTO landing (id_producto, contenido) VALUES (?, ?)";
                 $data = [$id_producto, $target_file];
                 $insertar_landing = $this->insert($sql, $data);
-                
+
                 $sql = "UPDATE `productos` SET `landing`=? WHERE id_producto=?";
-         //echo $sql;
-        $data_update = [$target_file, $id_producto];
-         //print_r($data_update);
-        $editar_producto = $this->update($sql, $data_update);
-        
+                //echo $sql;
+                $data_update = [$target_file, $id_producto];
+                //print_r($data_update);
+                $editar_producto = $this->update($sql, $data_update);
             } else {
                 $response['status'] = 500;
                 $response['title'] = 'Error';
@@ -114,7 +113,7 @@ class HomeModel extends Query
         // Devuelve la respuesta
         return $response;
     }
-    
+
     public function landingTienda($landing, $id_producto)
     {
         $target_dir = "public/landing/repositorio/";
@@ -147,13 +146,12 @@ class HomeModel extends Query
                 $response['message'] = 'Archivo subido correctamente';
                 $response['data'] = $target_file;
 
-                              
+
                 $sql = "UPDATE `productos_tienda` SET `landing_tienda`=?, landing_propia=? WHERE id_producto_tienda=?";
-         //echo $sql;
-        $data_update = [$target_file,1, $id_producto];
-         //print_r($data_update);
-        $editar_producto = $this->update($sql, $data_update);
-        
+                //echo $sql;
+                $data_update = [$target_file, 1, $id_producto];
+                //print_r($data_update);
+                $editar_producto = $this->update($sql, $data_update);
             } else {
                 $response['status'] = 500;
                 $response['title'] = 'Error';
@@ -184,7 +182,7 @@ class HomeModel extends Query
         return $response;
     }
 
-    
+
     public function editarLandingTienda($id_producto, $html)
     {
         $sql = "SELECT * FROM productos_tienda WHERE id_producto_tienda = $id_producto";
@@ -203,7 +201,7 @@ class HomeModel extends Query
 
         return $response;
     }
-    
+
     public function obtenerLanding($id)
     {
         $sql = "SELECT * FROM landing WHERE id_producto = $id";
@@ -214,8 +212,8 @@ class HomeModel extends Query
         $contenido = htmlspecialchars($contenido);
         return $contenido;
     }
-    
-     public function obtenerLandingTienda($id)
+
+    public function obtenerLandingTienda($id)
     {
         $sql = "SELECT * FROM productos_tienda WHERE id_producto_tienda = $id";
         $landing = $this->select($sql);
